@@ -1,7 +1,10 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import config.WebDriverProvider;
+import helper.Attach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
 public class BaseTest {
@@ -12,5 +15,14 @@ public class BaseTest {
 //        Configuration.baseUrl = "https://spoonacular.com";
 //        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         WebDriverProvider.configure();
+    }
+
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+        Selenide.closeWebDriver();
     }
 }
