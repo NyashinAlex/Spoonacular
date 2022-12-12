@@ -11,10 +11,10 @@ public class BaseTest {
 
     @BeforeAll
     static void openMainPage() {
-//        Configuration.browserSize = "1920x1080";
-//        Configuration.baseUrl = "https://spoonacular.com";
+        Configuration.browserSize = "1920x1080";
+        Configuration.baseUrl = "https://spoonacular.com";
 //        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        WebDriverProvider.configure();
+//        WebDriverProvider.configure();
     }
 
     @AfterEach
@@ -23,6 +23,6 @@ public class BaseTest {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
-        Selenide.closeWebDriver();
+//        Selenide.closeWebDriver();
     }
 }

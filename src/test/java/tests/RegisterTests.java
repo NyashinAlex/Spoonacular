@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegisterPage;
 
+import static helper.Attach.getVideoUrl;
+
 public class RegisterTests extends BaseTest{
 
     RegisterPage registerPage = new RegisterPage();
@@ -15,5 +17,6 @@ public class RegisterTests extends BaseTest{
     @DisplayName("Регистрация нового пользователя")
     void registerNewUser() {
         registerPage.writerFields();
+        System.out.println(getVideoUrl());
     }
 }
