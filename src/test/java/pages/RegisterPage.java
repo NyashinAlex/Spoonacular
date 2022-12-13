@@ -9,16 +9,16 @@ import static com.codeborne.selenide.Selenide.open;
 public class RegisterPage {
 
     private final SelenideElement
-            emailField = $("[type=\"text\"]",0),
-            passwordField = $("[type=\"password\"]");
-//            passwordRepeatField = $(".padded.shadow-box-api.col-lg-6 [placeholder=\"repeat password\"]");
+            emailField = $(".padded.shadow-box-api.col-lg-6 [type=\"text\"]"),
+            passwordField = $("[type=\"password\"]"),
+            buttonLogIn = $(".button.actionColor");
 
-    @Step("Заполение обязательных полей")
-    public RegisterPage writerFields() {
+    @Step("Заполнение обязательных полей")
+    public RegisterPage writerFields(String email, String password) {
         open("/food-api/console#Dashboard");
-        emailField.setValue("test@test.ru");
-        passwordField.setValue("test@test.ru");
-//        passwordRepeatField.setValue("test@test.ru");
+        emailField.setValue(email);
+        passwordField.setValue(password);
+        buttonLogIn.click();
         return this;
     }
 }
