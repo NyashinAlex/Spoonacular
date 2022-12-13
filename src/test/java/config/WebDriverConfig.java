@@ -9,7 +9,7 @@ import org.aeonbits.owner.Config;
 public interface WebDriverConfig extends Config {
 
     @Key("baseUrl")
-    @DefaultValue("https://spoonacular.com/")
+    @DefaultValue("https://spoonacular.com")
     String getBaseUrl();
 
     @Key("browser")
@@ -25,6 +25,6 @@ public interface WebDriverConfig extends Config {
     String getBrowserSize();
 
     @Key("remoteWebDriver")
-    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub")
+//    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub")
     String getRemoteWebDriver();
 }
