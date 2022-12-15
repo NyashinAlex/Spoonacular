@@ -162,15 +162,15 @@ remoteWebDriver=https://user1:1234@selenoid.autotests.cloud/wd/hub --- url Selem
 
 ## <img src="images/logo/Selenoid.svg" width="25" height="25" alt="Jenkins"/></a> Видео <a target="_blank" href="https://selenoid.autotests.cloud/video/595766d262ef75c7d541e35dd75e0c70.mp4"> прохождения тестов </a>
 
-##<img src="images/logo/AllureOps.svg" width="25" height="25"> Интеграция с Allure TestOps
-###Отчет о прохождении тест-кейсов:
+## <img src="images/logo/AllureOps.svg" width="25" height="25"> Интеграция с Allure TestOps
+### Отчет о прохождении тест-кейсов:
 <img src="images/screens/allureOps.bmp"/>
 
-###"Хранилище" тест-кейсов:
+### "Хранилище" тест-кейсов:
 Allure TestOps очень удобный инструмент. В одном месте можно хранить и автоматизированные, а также кейсы, которые проходят в ручную.
 <img src="images/screens/allureOps1.bmp"/>
-символы 
-###Общий дашборд:
+
+### Общий дашборд:
 <img src="images/screens/Ops3.bmp"/>
 
 ## <img src="images/logo/Jira.svg" width="25" height="25">Интеграция с Jira
