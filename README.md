@@ -105,84 +105,60 @@
 - Появляется информативное сообщение об ошибке: _Login information incorrect._
 
 
-## <img src="images/logo/Jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> Jenkins <a target="_blank" href="https://jenkins.autotests.cloud/job/IBS_test/"> job </a>
+## <img src="images/logo/Jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> <a target="_blank" href="https://jenkins.autotests.cloud/job/Spoonacular/"> Jenkins job (Allure report)</a>
 <p align="center">
-<a href="https://jenkins.autotests.cloud/job/IBS_test/"><img src="images/screens/jenkns.PNG" alt="Jenkins"/></a>
+<a href="https://jenkins.autotests.cloud/job/Spoonacular/"><img src="images/screens/jenkins.bmp" alt="Jenkins"/></a>
 </p>
 
+###Список пройденных автотестов:
+- все успешно пройденные кейсы отмечаются ✅
+- тесты с ошибкой помечаются ❌
+<img src="images/screens/пройденный_кейсы.bmp"/>
 
-## 📡: Параметры сборки в Jenkins:
+###Вот так выглядит прохождения тест-кейса без ошибок:
+В отчет прикладывается:
+- скриншот после прохождения всех шагов
+- page source
+- логи браузера
+- видеокаст прохождения всего кейса
+<img src="images/screens/успешный_кейс.bmp"/>
 
-- Browser (браузер, по умолчанию chrome)
-- Version (версия браузера, по умолчанию 91.0)
-- Browser_size (размер окна браузера, по умолчанию 1920x1080)
+###Графики
+<img src="images/screens/graf.bmp"/>
+<img src="images/screens/graf2.bmp"/>
 
 ## 🌟: Запуск тестов из терминала
-Локальный запуск:
+####Локальный запуск:
 ```
-gradle clean test
+gradle clean test -Denv=local
 ```
-
-Удаленный запуск:
+где **local** - это конфигурационный файл, который содержит следующие параметры:
 ```
-clean
-test
--Dbrowser=${BROWSER}
--Dversion=${VERSION}
--Dsize=${BROWSER_SIZE}
--Durl=${REMOTE_URL}
+baseUrl=https://spoonacular.com --- базовый url сайта
+browser=chrome --- тестовый браузер
+browserVersion=100.0 --- версия тестового браузера
+browserSize=1920x1080 --- тестовое разрешение
 ```
 
-# Примеры использования
-
-### Для запуска удаленных тестов необходимо заполнить remote.properties или передать значение:
-
-* browser (default chrome)
-* browserVersion (default 100.0)
-* browserSize (default 1920x1080)
-* remoteDriverUrl (url address from selenoid or grid)
-* videoStorage (url address where you should get video)
-
-
-Запускайте тесты с заполненным remote.properties:
-```bash
-gradle clean test
+####Удаленный запуск:
 ```
-
-Запускайте тесты с незаполненным remote.properties:
-```bash
-gradle clean -DremoteDriverUrl=https://%s:%s@selenoid.autotests.cloud/wd/hub/ -DvideoStorage=https://selenoid.autotests.cloud/video/
+gradle clean test -Denv=remote
 ```
-
-Выдать отчет:
-```bash
-allure serve build/allure-results
+где **remote** - это конфигурационный файл, который содержит следующие параметры:
 ```
-## <img src="images/logo/Allure.svg" width="25" height="25"  alt="Allure"/></a> Отчет в <a target="_blank" href="https://jenkins.autotests.cloud/job/IBS_test/allure/">Allure report</a>
-
-## ✨: Основной отчет
-<p align="center">
-<img title="Allure Overview Dashboard" src="images/screens/reprt.PNG">
-</p>
-C:\Users\maver\IBS-tests\images\screens\report.PNG
-
-## ✨: Тесты
-<p align="center">
-<img title="Allure Tests" src="images/screens/tess.PNG">
-</p>
-
-## 💹: Графики
-<p align="center">
-<img title="Allure Tests" src="images/screens/chat.PNG">
-</p>
+baseUrl=https://spoonacular.com --- базовый url сайта
+browser=chrome --- тестовый браузер
+browserVersion=100.0 --- версия тестового браузера
+browserSize=1920x1080 --- тестовое разрешение
+remoteWebDriver=https://user1:1234@selenoid.autotests.cloud/wd/hub --- url Selemoid'а
+```
 
 ## <img src="images/logo/Telegram.svg" width="25" height="25"  alt="Allure"/></a> Уведомление в Telegram при помощи бота
-
+- статус **broken** означает, что тесты не прошли по техническим причинам. Например, проблемы со стендом :(
 <p align="center">
-<img title="Allure Overview Dashboard" src="images/screens/notf.PNG" >
+<img title="Allure Overview Dashboard" src="images/screens/tg.bmp" >
 </p>
 
-## <img src="images/logo/Selenoid.svg" width="25" height="25" alt="Jenkins"/></a> Видео <a target="_blank" href="https://selenoid.autotests.cloud/video/fe43b9f89a795109ff4959044e6650d7.mp4"> прохождения тестов </a>
-<p align="center">
-<a href="https://selenoid.autotests.cloud/video/fe43b9f89a795109ff4959044e6650d7.mp4"></a>
-</p>
+## <img src="images/logo/Selenoid.svg" width="25" height="25" alt="Jenkins"/></a> Видео <a target="_blank" href="https://selenoid.autotests.cloud/video/595766d262ef75c7d541e35dd75e0c70.mp4"> прохождения тестов </a>
+
+<video> <source src="https://selenoid.autotests.cloud/video/595766d262ef75c7d541e35dd75e0c70.mp4" type="video/mp4"> </video>
