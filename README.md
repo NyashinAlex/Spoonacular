@@ -4,7 +4,7 @@
 
 - [Технологии и инструменты](#earth_africa-технологии-и-инструменты)
 - [Реализованные проверки](#earth_africa-Реализованные-проверки)
-- [Jenkins job (Allure report)](#earth_africa-Jenkins job-(Allure-report))
+- [Jenkins job (Allure report)](#earth_africa-Jenkins-job-(Allure-report))
 - [Запуск из терминала](#earth_africa-Запуск-тестов-из-терминала)
 - [Примеры использования](#earth_africa-Allure-отчет)
 - [Отчет в Telegram](#earth_africa-Уведомление-в-Telegram-при-помощи-бота)
