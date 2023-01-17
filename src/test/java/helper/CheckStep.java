@@ -14,4 +14,11 @@ public class CheckStep {
         $("#apiConsoleRightSide p", 3).shouldBe(text(email));
         return this;
     }
+
+    @Step("Проверка, что пользователь верно не авторизовался")
+    public CheckStep unsuccessfulAuth() {
+        $(".awn-toast-label").shouldBe(text("Error"));
+        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
+        return this;
+    }
 }

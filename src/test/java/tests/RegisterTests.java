@@ -35,7 +35,6 @@ public class RegisterTests extends BaseTest {
     void authUser() {
         registerPage.writerFields(email, password);
         checkStep.successAuth(email);
-
     }
 
     @CsvSource(value = {
@@ -47,35 +46,6 @@ public class RegisterTests extends BaseTest {
     @ParameterizedTest(name = "Невозможность авторизации несуществующего пользователя - разные проверки")
     void unsuccessfulAuthUser() {
         registerPage.writerFields(emailRandom, passwordRandom);
-
-        $(".awn-toast-label").shouldBe(text("Error"));
-        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
+        checkStep.unsuccessfulAuth();
     }
-
-//    @Test
-//    @DisplayName("Невозможность авторизации - пустой email")
-//    void unsuccessfulAuthNotEmail() {
-//        registerPage.writerFields("", passwordRandom);
-//
-//        $(".awn-toast-label").shouldBe(text("Error"));
-//        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
-//    }
-//
-//    @Test
-//    @DisplayName("Невозможность авторизации - пустой password")
-//    void unsuccessfulAuthNotPassword() {
-//        registerPage.writerFields(emailRandom, "");
-//
-//        $(".awn-toast-label").shouldBe(text("Error"));
-//        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
-//    }
-//
-//    @Test
-//    @DisplayName("Невозможность авторизации - не заполнены поля")
-//    void unsuccessfulAuthNotWriterFields() {
-//        registerPage.writerFields("", "");
-//
-//        $(".awn-toast-label").shouldBe(text("Error"));
-//        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
-//    }
 }
