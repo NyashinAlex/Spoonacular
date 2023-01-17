@@ -1,9 +1,12 @@
 package tests;
 
 import com.github.javafaker.Faker;
+import helper.CheckStep;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import pages.RegisterPage;
 
 import static com.codeborne.selenide.Condition.text;
@@ -13,6 +16,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class RegisterTests extends BaseTest {
 
     RegisterPage registerPage = new RegisterPage();
+    CheckStep checkStep = new CheckStep();
     Faker faker = new Faker();
 
     String emailRandom, passwordRandom;
@@ -30,13 +34,17 @@ public class RegisterTests extends BaseTest {
     @DisplayName("Авторизация существующего пользователя")
     void authUser() {
         registerPage.writerFields(email, password);
+        checkStep.successAuth(email);
 
-        open("/food-api/console#Profile");
-        $("#apiConsoleRightSide p", 3).shouldBe(text(email));
     }
 
-    @Test
-    @DisplayName("Невозможность авторизации несуществующего пользователя")
+    @CsvSource(value = {
+            "emailRandom, passwordRandom",
+            ", passwordRandom",
+            "emailRandom,",
+            ","
+    })
+    @ParameterizedTest(name = "Невозможность авторизации несуществующего пользователя - разные проверки")
     void unsuccessfulAuthUser() {
         registerPage.writerFields(emailRandom, passwordRandom);
 
@@ -44,30 +52,30 @@ public class RegisterTests extends BaseTest {
         $(".awn-toast-content").shouldBe(text("Login information incorrect."));
     }
 
-    @Test
-    @DisplayName("Невозможность авторизации - пустой email")
-    void unsuccessfulAuthNotEmail() {
-        registerPage.writerFields("", passwordRandom);
-
-        $(".awn-toast-label").shouldBe(text("Error"));
-        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
-    }
-
-    @Test
-    @DisplayName("Невозможность авторизации - пустой password")
-    void unsuccessfulAuthNotPassword() {
-        registerPage.writerFields(emailRandom, "");
-
-        $(".awn-toast-label").shouldBe(text("Error"));
-        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
-    }
-
-    @Test
-    @DisplayName("Невозможность авторизации - не заполнены поля")
-    void unsuccessfulAuthNotWriterFields() {
-        registerPage.writerFields("", "");
-
-        $(".awn-toast-label").shouldBe(text("Error"));
-        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
-    }
+//    @Test
+//    @DisplayName("Невозможность авторизации - пустой email")
+//    void unsuccessfulAuthNotEmail() {
+//        registerPage.writerFields("", passwordRandom);
+//
+//        $(".awn-toast-label").shouldBe(text("Error"));
+//        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
+//    }
+//
+//    @Test
+//    @DisplayName("Невозможность авторизации - пустой password")
+//    void unsuccessfulAuthNotPassword() {
+//        registerPage.writerFields(emailRandom, "");
+//
+//        $(".awn-toast-label").shouldBe(text("Error"));
+//        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
+//    }
+//
+//    @Test
+//    @DisplayName("Невозможность авторизации - не заполнены поля")
+//    void unsuccessfulAuthNotWriterFields() {
+//        registerPage.writerFields("", "");
+//
+//        $(".awn-toast-label").shouldBe(text("Error"));
+//        $(".awn-toast-content").shouldBe(text("Login information incorrect."));
+//    }
 }
